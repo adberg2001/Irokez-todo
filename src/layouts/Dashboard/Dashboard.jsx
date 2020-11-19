@@ -1,318 +1,261 @@
 import React, {useState} from "react";
 import List from "@material-ui/core/List";
-import SchoolIcon from "@material-ui/icons/School";
-import PeopleIcon from "@material-ui/icons/People";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
-import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
-import BusinessIcon from "@material-ui/icons/Business";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import CheckIcon from "@material-ui/icons/Check";
-import ShowChartIcon from "@material-ui/icons/ShowChart";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
-import AmpStoriesIcon from "@material-ui/icons/AmpStories";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import {NavLink} from "react-router-dom";
 
-import moduleClasses from "./dashboard.module.sass";
+import style from "./dashboard.module.sass";
 
 
 export default function Dashboard() {
-
-  const [usersListDropdown, setUsersListDropdown] = useState(false);
   const [coursesDropdown, setCoursesDropdown] = useState(false);
-  const [examsDropdown, setExamsDropdown] = useState(false);
   const [financeDropdown, setFinanceDropdown] = useState(false);
-  const [analyticsDropdown, setAnalyticsDropdown] = useState(false);
-
-  const handleUsersListDropdownClick = () => {
-    setUsersListDropdown(!usersListDropdown);
-  };
 
   const handleCoursesDropdownClick = () => {
     setCoursesDropdown(!coursesDropdown);
   };
-
-  const handleExamsDropdownClick = () => {
-    setExamsDropdown(!examsDropdown);
-  };
-
   const handleFinanceDropdownClick = () => {
     setFinanceDropdown(!financeDropdown);
   };
 
-  const handleAnalyticsDropdown = () => {
-    setAnalyticsDropdown(!analyticsDropdown);
-  };
-
   return (
-    <div>
-        <List>
-          <NavLink to="/">
-            <ListItem button key="Home">
-              <ListItemIcon>
-                <SchoolIcon color="action" style={{fill: "#fff"}}/>
-              </ListItemIcon>
-              <ListItemText
-                className={moduleClasses.DrawerLink}
-                primary="Главная"
-              />
-            </ListItem>
-          </NavLink>
+    <div className={style.mainCont}>
+      <List>
+        <div className={style.dropDown} onClick={handleCoursesDropdownClick}>
+          <h3 className={style.dropDownName}>Company Name</h3>
+          {coursesDropdown ? <ExpandLess/> : <ExpandMore/>}
+        </div>
 
-          <ListItem
-            button
-            key="UsersList"
-            onClick={handleUsersListDropdownClick}
-          >
-            <ListItemIcon>
-              <PeopleIcon color="action" style={{fill: "#fff"}}/>
-            </ListItemIcon>
-            <ListItemText
-              primary="Пользователи"
-              className={moduleClasses.DrawerLink}
-            />
-            {usersListDropdown ? <ExpandLess/> : <ExpandMore/>}
-          </ListItem>
-
-          <Collapse in={usersListDropdown} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <NavLink to="/adminsList">
-                <ListItem
-                  button
-                  key="UsersList/adminsList"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Администраторы"
-                  />
-                </ListItem>
-              </NavLink>
-              <NavLink to="/trainersList">
-                <ListItem
-                  button
-                  key="UsersList/trainersList"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Менторы"
-                  />
-                </ListItem>
-              </NavLink>
-              <NavLink to="/studentsList">
-                <ListItem
-                  button
-                  key="UsersList/studentsList"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Студенты"
-                  />
-                </ListItem>
-              </NavLink>
-              <NavLink to="/staffMembersList">
-                <ListItem
-                  button
-                  key="UsersList/staffMembers"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Сотрудники"
-                  />
-                </ListItem>
-              </NavLink>
-            </List>
-          </Collapse>
-
-          <ListItem button key="Courses" onClick={handleCoursesDropdownClick}>
-            <ListItemIcon>
-              <MenuBookIcon color="action" style={{fill: "#fff"}}/>
-            </ListItemIcon>
-            <ListItemText
-              className={moduleClasses.DrawerLink}
-              primary="Курсы"
-            />
-            {coursesDropdown ? <ExpandLess/> : <ExpandMore/>}
-          </ListItem>
-
-          <Collapse in={coursesDropdown} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <NavLink to="/courses">
-                <ListItem
-                  button
-                  key="courses/getCourses"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Курсы"
-                  />
-                </ListItem>
-              </NavLink>
-
-              <NavLink to="/tags">
-                <ListItem
-                  button
-                  key="courses/getTags"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Тэги"
-                  />
-                </ListItem>
-              </NavLink>
-            </List>
-          </Collapse>
-
-          <ListItem button key="Klasses">
-            <NavLink style={{display: "flex"}} to="/klasses">
-              <ListItemIcon>
-                <SchoolIcon color="action" style={{fill: "#fff"}}/>
-              </ListItemIcon>
-              <ListItemText
-                className={moduleClasses.DrawerLink}
-                primary="Классы"
-              />
+        <Collapse in={coursesDropdown} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={style.icon}
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4 6C4 4.89543 4.89543 4 6 4H12C13.1046 4 14 4.89543 14 6V6C14 10.4183 10.4183 14 6 14V14C4.89543 14 4 13.1046 4 12V6Z"
+                    strokeWidth="2"/>
+                  <path
+                    d="M20 18C20 19.1046 19.1046 20 18 20L13.6 20C12.7163 20 12 19.2837 12 18.4V18.4C12 14.8654 14.8654 12 18.4 12V12C19.2837 12 20 12.7163 20 13.6L20 18Z"
+                    strokeWidth="2"/>
+                </svg>
+                <span className={style.dropCellName}>Главная</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
             </NavLink>
-          </ListItem>
 
-          <ListItem button key="Branches">
-            <NavLink style={{display: "flex"}} to="/branches">
-              <ListItemIcon>
-                <BusinessIcon color="action" style={{fill: "#fff"}}/>
-              </ListItemIcon>
-              <ListItemText
-                className={moduleClasses.DrawerLink}
-                primary="Филиалы"
-              />
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg className={style.icon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.87112 12.7998H12.0001C12.2841 12.7998 12.5551 12.9208 12.7441 13.1318C12.9331 13.3428 13.0241 13.6248 12.9941 13.9068L12.5451 18.0568L17.1291 11.1998H12.0001C11.7161 11.1998 11.4451 11.0788 11.2561 10.8678C11.0661 10.6568 10.9751 10.3748 11.0061 10.0928L11.4551 5.9438L6.87112 12.7998ZM11.1111 22.9998C10.9971 22.9998 10.8821 22.9808 10.7691 22.9398C10.3371 22.7818 10.0671 22.3498 10.1171 21.8928L10.8861 14.7998H5.00012C4.63112 14.7998 4.29212 14.5968 4.11812 14.2718C3.94412 13.9458 3.96412 13.5508 4.16912 13.2438L12.0581 1.4448C12.3131 1.0608 12.7971 0.902798 13.2301 1.0608C13.6631 1.2178 13.9331 1.6508 13.8831 2.1078L13.1141 9.1998H19.0001C19.3691 9.1998 19.7081 9.4038 19.8821 9.7288C20.0561 10.0548 20.0361 10.4488 19.8311 10.7558L11.9421 22.5558C11.7531 22.8398 11.4371 22.9998 11.1111 22.9998Z" fill="#616061"/>
+                  <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="4" y="1" width="16" height="22">
+                    <path d="M6.87112 12.7998H12.0001C12.2841 12.7998 12.5551 12.9208 12.7441 13.1318C12.9331 13.3428 13.0241 13.6248 12.9941 13.9068L12.5451 18.0568L17.1291 11.1998H12.0001C11.7161 11.1998 11.4451 11.0788 11.2561 10.8678C11.0661 10.6568 10.9751 10.3748 11.0061 10.0928L11.4551 5.9438L6.87112 12.7998ZM11.1111 22.9998C10.9971 22.9998 10.8821 22.9808 10.7691 22.9398C10.3371 22.7818 10.0671 22.3498 10.1171 21.8928L10.8861 14.7998H5.00012C4.63112 14.7998 4.29212 14.5968 4.11812 14.2718C3.94412 13.9458 3.96412 13.5508 4.16912 13.2438L12.0581 1.4448C12.3131 1.0608 12.7971 0.902798 13.2301 1.0608C13.6631 1.2178 13.9331 1.6508 13.8831 2.1078L13.1141 9.1998H19.0001C19.3691 9.1998 19.7081 9.4038 19.8821 9.7288C20.0561 10.0548 20.0361 10.4488 19.8311 10.7558L11.9421 22.5558C11.7531 22.8398 11.4371 22.9998 11.1111 22.9998Z" fill="white"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                    <rect width="24" height="24" fill="#616061"/>
+                  </g>
+                </svg>
+                <span className={style.dropCellName}>Запросы</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
             </NavLink>
-          </ListItem>
 
-          <ListItem button key="Exams" onClick={handleExamsDropdownClick}>
-            <ListItemIcon>
-              <CheckIcon color="action" style={{fill: "#fff"}}/>
-            </ListItemIcon>
-            <ListItemText
-              className={moduleClasses.DrawerLink}
-              primary="Экзамены"
-            />
-            {examsDropdown ? <ExpandLess/> : <ExpandMore/>}
-          </ListItem>
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg className={style.icon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M7 16C7 15.45 7.45 15 8 15C8.55 15 9 15.45 9 16C9 16.55 8.55 17 8 17C7.45 17 7 16.55 7 16ZM12 15H16C16.55 15 17 15.45 17 16C17 16.55 16.55 17 16 17H12C11.45 17 11 16.55 11 16C11 15.45 11.45 15 12 15ZM18 20H6C5.449 20 5 19.551 5 19V13H19V19C19 19.551 18.551 20 18 20ZM6 6H7V7C7 7.55 7.45 8 8 8C8.55 8 9 7.55 9 7V6H15V7C15 7.55 15.45 8 16 8C16.55 8 17 7.55 17 7V6H18C18.551 6 19 6.449 19 7V11H5V7C5 6.449 5.449 6 6 6ZM18 4H17V3C17 2.45 16.55 2 16 2C15.45 2 15 2.45 15 3V4H9V3C9 2.45 8.55 2 8 2C7.45 2 7 2.45 7 3V4H6C4.346 4 3 5.346 3 7V19C3 20.654 4.346 22 6 22H18C19.654 22 21 20.654 21 19V7C21 5.346 19.654 4 18 4Z" fill="#616061"/>
+                  <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="3" y="2" width="18" height="20">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M7 16C7 15.45 7.45 15 8 15C8.55 15 9 15.45 9 16C9 16.55 8.55 17 8 17C7.45 17 7 16.55 7 16ZM12 15H16C16.55 15 17 15.45 17 16C17 16.55 16.55 17 16 17H12C11.45 17 11 16.55 11 16C11 15.45 11.45 15 12 15ZM18 20H6C5.449 20 5 19.551 5 19V13H19V19C19 19.551 18.551 20 18 20ZM6 6H7V7C7 7.55 7.45 8 8 8C8.55 8 9 7.55 9 7V6H15V7C15 7.55 15.45 8 16 8C16.55 8 17 7.55 17 7V6H18C18.551 6 19 6.449 19 7V11H5V7C5 6.449 5.449 6 6 6ZM18 4H17V3C17 2.45 16.55 2 16 2C15.45 2 15 2.45 15 3V4H9V3C9 2.45 8.55 2 8 2C7.45 2 7 2.45 7 3V4H6C4.346 4 3 5.346 3 7V19C3 20.654 4.346 22 6 22H18C19.654 22 21 20.654 21 19V7C21 5.346 19.654 4 18 4Z" fill="white"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                    <rect width="24" height="24" fill="#616061"/>
+                  </g>
+                </svg>
 
-          <Collapse in={examsDropdown} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <NavLink to="/exams">
-                <ListItem
-                  button
-                  key="exams/getExams"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Посмотреть экзамены"
-                  />
-                </ListItem>
-              </NavLink>
-              <NavLink to="/exams/addExam">
-                <ListItem button key="exams/addExam">
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Добавить экзамен"
-                  />
-                </ListItem>
-              </NavLink>
-            </List>
-          </Collapse>
-
-          <ListItem button key="finance" onClick={handleFinanceDropdownClick}>
-            <ListItemIcon>
-              <MonetizationOnIcon color="action" style={{fill: "#fff"}}/>
-            </ListItemIcon>
-            <ListItemText
-              className={moduleClasses.DrawerLink}
-              primary="Финансы"
-            />
-            {financeDropdown ? <ExpandLess/> : <ExpandMore/>}
-          </ListItem>
-
-          <Collapse in={financeDropdown} timeout="auto" unmountOnExit>
-            <List className="ml-3" component="div" disablePadding>
-              <NavLink className="p-0" to="/transactions">
-                <ListItem button key="finance/transactions">
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Транзакции"
-                  />
-                </ListItem>
-              </NavLink>
-
-              <NavLink className="p-0" to="/expenseTags">
-                <ListItem button key="/wallets">
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Кошельки"
-                  />
-                </ListItem>
-              </NavLink>
-
-              <NavLink className="p-0" to="/expenseTags">
-                <ListItem button key="finance/transactions">
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Категории расходов"
-                  />
-                </ListItem>
-              </NavLink>
-            </List>
-          </Collapse>
-
-          <ListItem button key="Inventories">
-            <NavLink style={{display: "flex"}} to="/inventories">
-              <ListItemIcon>
-                <AmpStoriesIcon color="action" style={{fill: "#fff"}}/>
-              </ListItemIcon>
-              <ListItemText
-                className={moduleClasses.DrawerLink}
-                primary="Инвентарь"
-              />
+                <span className={style.dropCellName}>Календарь</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
             </NavLink>
-          </ListItem>
 
-          <ListItem button key="analytics" onClick={handleAnalyticsDropdown}>
-            <ListItemIcon>
-              <ShowChartIcon color="action" style={{fill: "#fff"}}/>
-            </ListItemIcon>
-            <ListItemText
-              className={moduleClasses.DrawerLink}
-              primary="Аналитика"
-            />
-            {analyticsDropdown ? <ExpandLess/> : <ExpandMore/>}
-          </ListItem>
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg className={style.icon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M7 19C6.449 19 6 18.551 6 18C6 17.449 6.449 17 7 17H18V19H7ZM7 5H18V15H7C6.647 15 6.314 15.072 6 15.184V6C6 5.449 6.449 5 7 5ZM19 3H7C5.346 3 4 4.346 4 6V18C4 19.654 5.346 21 7 21H18H19C19.552 21 20 20.552 20 20V19V17V4C20 3.448 19.552 3 19 3Z" fill="#616061"/>
+                  <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="4" y="3" width="16" height="18">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M7 19C6.449 19 6 18.551 6 18C6 17.449 6.449 17 7 17H18V19H7ZM7 5H18V15H7C6.647 15 6.314 15.072 6 15.184V6C6 5.449 6.449 5 7 5ZM19 3H7C5.346 3 4 4.346 4 6V18C4 19.654 5.346 21 7 21H18H19C19.552 21 20 20.552 20 20V19V17V4C20 3.448 19.552 3 19 3Z" fill="white"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                    <rect width="24" height="24" fill="#616061"/>
+                  </g>
+                </svg>
 
-          <Collapse in={analyticsDropdown} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <NavLink to="/students-analytics">
-                <ListItem
-                  button
-                  key="students-analytics"
-                >
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Аналитика по студентам"
-                  />
-                </ListItem>
-              </NavLink>
-              <NavLink to="/finance-analytics">
-                <ListItem button key="/finance-analytics">
-                  <ListItemText
-                    className={moduleClasses.DrawerLink}
-                    primary="Аналитика по финансам"
-                  />
-                </ListItem>
-              </NavLink>
-            </List>
-          </Collapse>
-        </List>
+                <span className={style.dropCellName}>База знаний</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </NavLink>
+
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={style.icon}
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4 6C4 4.89543 4.89543 4 6 4H12C13.1046 4 14 4.89543 14 6V6C14 10.4183 10.4183 14 6 14V14C4.89543 14 4 13.1046 4 12V6Z"
+                    strokeWidth="2"/>
+                  <path
+                    d="M20 18C20 19.1046 19.1046 20 18 20L13.6 20C12.7163 20 12 19.2837 12 18.4V18.4C12 14.8654 14.8654 12 18.4 12V12C19.2837 12 20 12.7163 20 13.6L20 18Z"
+                    strokeWidth="2"/>
+                </svg>
+                <span className={style.dropCellName}>Новости</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </NavLink>
+
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg className={style.icon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M20.997 10.9741H21C21.551 10.9741 21.999 11.4201 22 11.9711C22.008 14.6421 20.975 17.1571 19.091 19.0511C17.208 20.9451 14.7 21.9921 12.029 22.0001H12C9.33905 22.0001 6.83605 20.9681 4.94905 19.0911C3.05505 17.2081 2.00805 14.7001 2.00005 12.0291C1.99205 9.35711 3.02505 6.84311 4.90905 4.94911C6.79205 3.05511 9.30005 2.00811 11.971 2.00011C12.766 2.01211 13.576 2.09211 14.352 2.27811C14.888 2.40811 15.219 2.94811 15.089 3.48511C14.96 4.02111 14.417 4.35111 13.883 4.22311C13.262 4.07311 12.603 4.01011 11.977 4.00011C9.84005 4.00611 7.83305 4.84411 6.32705 6.35911C4.82005 7.87411 3.99405 9.88611 4.00005 12.0231C4.00605 14.1601 4.84405 16.1661 6.35905 17.6731C7.86905 19.1741 9.87105 20.0001 12 20.0001H12.023C14.16 19.9941 16.167 19.1561 17.673 17.6411C19.18 16.1251 20.006 14.1141 20 11.9771C19.999 11.4251 20.445 10.9751 20.997 10.9741ZM8.29305 11.293C8.68405 10.902 9.31605 10.902 9.70705 11.293L11.951 13.537L18.248 6.34101C18.612 5.92801 19.243 5.88401 19.659 6.24801C20.074 6.61101 20.116 7.24301 19.752 7.65901L12.752 15.659C12.57 15.867 12.31 15.99 12.033 16H12C11.735 16 11.481 15.895 11.293 15.707L8.29305 12.707C7.90205 12.316 7.90205 11.684 8.29305 11.293Z" fill="white"/>
+                  <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="2" y="2" width="20" height="21">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M20.997 10.9741H21C21.551 10.9741 21.999 11.4201 22 11.9711C22.008 14.6421 20.975 17.1571 19.091 19.0511C17.208 20.9451 14.7 21.9921 12.029 22.0001H12C9.33905 22.0001 6.83605 20.9681 4.94905 19.0911C3.05505 17.2081 2.00805 14.7001 2.00005 12.0291C1.99205 9.35711 3.02505 6.84311 4.90905 4.94911C6.79205 3.05511 9.30005 2.00811 11.971 2.00011C12.766 2.01211 13.576 2.09211 14.352 2.27811C14.888 2.40811 15.219 2.94811 15.089 3.48511C14.96 4.02111 14.417 4.35111 13.883 4.22311C13.262 4.07311 12.603 4.01011 11.977 4.00011C9.84005 4.00611 7.83305 4.84411 6.32705 6.35911C4.82005 7.87411 3.99405 9.88611 4.00005 12.0231C4.00605 14.1601 4.84405 16.1661 6.35905 17.6731C7.86905 19.1741 9.87105 20.0001 12 20.0001H12.023C14.16 19.9941 16.167 19.1561 17.673 17.6411C19.18 16.1251 20.006 14.1141 20 11.9771C19.999 11.4251 20.445 10.9751 20.997 10.9741ZM8.29305 11.293C8.68405 10.902 9.31605 10.902 9.70705 11.293L11.951 13.537L18.248 6.34101C18.612 5.92801 19.243 5.88401 19.659 6.24801C20.074 6.61101 20.116 7.24301 19.752 7.65901L12.752 15.659C12.57 15.867 12.31 15.99 12.033 16H12C11.735 16 11.481 15.895 11.293 15.707L8.29305 12.707C7.90205 12.316 7.90205 11.684 8.29305 11.293Z" fill="white"/>
+                  </mask>
+                  <g mask="url(#mask0)">
+                    <rect width="24" height="24" fill="white"/>
+                  </g>
+                </svg>
+                <span className={style.dropCellName}>Задачи</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </NavLink>
+
+            <NavLink to="/in-progress">
+              <div className={style.dropCell}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className={style.icon}
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4 6C4 4.89543 4.89543 4 6 4H12C13.1046 4 14 4.89543 14 6V6C14 10.4183 10.4183 14 6 14V14C4.89543 14 4 13.1046 4 12V6Z"
+                    strokeWidth="2"/>
+                  <path
+                    d="M20 18C20 19.1046 19.1046 20 18 20L13.6 20C12.7163 20 12 19.2837 12 18.4V18.4C12 14.8654 14.8654 12 18.4 12V12C19.2837 12 20 12.7163 20 13.6L20 18Z"
+                    strokeWidth="2"/>
+                </svg>
+                <span className={style.dropCellName}>Чаты</span>
+                <svg className={style.dropCellHelp} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    <mask id="mask0" maskType="alpha" maskUnits="userSpaceOnUse" x="1" y="1" width="16" height="16">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M6.375 7.125C6.375 5.6775 7.5525 4.5 9 4.5C10.4475 4.5 11.625 5.6775 11.625 7.125C11.625 8.31 10.83 9.30225 9.75 9.62775V10.5C9.75 10.9148 9.41475 11.25 9 11.25C8.58525 11.25 8.25 10.9148 8.25 10.5V9C8.25 8.58525 8.58525 8.25 9 8.25C9.62025 8.25 10.125 7.74525 10.125 7.125C10.125 6.50475 9.62025 6 9 6C8.37975 6 7.875 6.50475 7.875 7.125C7.875 7.53975 7.53975 7.875 7.125 7.875C6.71025 7.875 6.375 7.53975 6.375 7.125ZM8.25 12.75C8.25 12.3352 8.58525 12 9 12C9.41475 12 9.75 12.3352 9.75 12.75C9.75 13.1648 9.41475 13.5 9 13.5C8.58525 13.5 8.25 13.1648 8.25 12.75ZM9 15C5.69175 15 3 12.3082 3 9C3 5.69175 5.69175 3 9 3C12.3082 3 15 5.69175 15 9C15 12.3082 12.3082 15 9 15ZM9 1.5C4.8645 1.5 1.5 4.8645 1.5 9C1.5 13.1355 4.8645 16.5 9 16.5C13.1355 16.5 16.5 13.1355 16.5 9C16.5 4.8645 13.1355 1.5 9 1.5Z" fill="white"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                      <rect width="18" height="18" fill="white"/>
+                    </g>
+                  </g>
+                </svg>
+              </div>
+            </NavLink>
+
+          </List>
+        </Collapse>
+
+        {/*================================================================================================================================*/}
+
+        <div className={style.dropDown} key="finance" onClick={handleFinanceDropdownClick}>
+          <h3 className={style.dropDownName}>Администратор</h3>
+          {financeDropdown ? <ExpandLess/> : <ExpandMore/>}
+        </div>
+
+        <Collapse in={financeDropdown} timeout="auto" unmountOnExit>
+          <List className="ml-3" component="div" disablePadding>
+            <NavLink className="p-0" to="/transactions">
+              <ListItem button key="finance/transactions">
+                <ListItemText
+                  className={style.DrawerLink}
+                  primary="Транзакции"
+                />
+              </ListItem>
+            </NavLink>
+
+            <NavLink className="p-0" to="/expenseTags">
+              <ListItem button key="/wallets">
+                <ListItemText
+                  className={style.DrawerLink}
+                  primary="Кошельки"
+                />
+              </ListItem>
+            </NavLink>
+
+            <NavLink className="p-0" to="/expenseTags">
+              <ListItem button key="finance/transactions">
+                <ListItemText
+                  className={style.DrawerLink}
+                  primary="Категории расходов"
+                />
+              </ListItem>
+            </NavLink>
+          </List>
+        </Collapse>
+      </List>
     </div>
   );
 }

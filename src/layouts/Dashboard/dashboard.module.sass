@@ -1,0 +1,55 @@
+.mainCont
+  width: 190px
+
+  .dropDown
+    padding: 0
+    display: flex
+    align-items: center
+
+    .dropDownName
+      font-style: normal
+      font-weight: normal
+      font-size: 12px
+      line-height: 14px
+      letter-spacing: 0.12em
+      text-transform: uppercase
+      margin-right: 10px
+
+  .dropCell
+    height: 25px
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    color: #1D1C1D
+    border-radius: 8px
+    margin: 0 -7px
+    padding: 7px
+
+    .icon
+      path
+        stroke: #616061
+
+    .dropCellName
+      font-weight: 400
+      font-size: 14px
+      line-height: 17px
+      display: flex
+      align-items: center
+      margin-left: 10px
+
+    .dropCellHelp
+      margin-left: auto
+      g
+        display: none
+
+  .dropCell:hover
+    background: #FF4C00
+    color: #fff
+
+    .icon
+      path
+        stroke: #fff
+
+    .dropCellHelp
+      g
+        display: block
