@@ -1,27 +1,23 @@
 import React, {useEffect} from "react";
 import Header from "../../layouts/Header/Header";
 import style from "./main-wrapper.module.sass"
-import request from "../../fetch/configuratedFetch"
+import authRequest from "../../fetch/authRequest";
+import Dashboard from "../../layouts/Dashboard/Dashboard";
 
 function MainWrapper({children}) {
 
   useEffect(() => {
-    request("POST", "token/login/", {
+    authRequest({
       email: "test13@irokez.me",
       password: "GerQKfCv"
-    }).then((json) => {
-      console.log(json)
-      localStorage.setItem('token', json.token)
     })
-      .catch((error) => {
-        console.log(error)
-      })
   }, [])
 
   return (
     <div className={style.parent}>
       <Header/>
       <div className={style.main}>
+        <Dashboard/>
         {children}
       </div>
     </div>
