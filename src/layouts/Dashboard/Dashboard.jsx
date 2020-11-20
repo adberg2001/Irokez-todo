@@ -193,7 +193,7 @@ export default function Dashboard() {
               </div>
             </NavLink>
 
-            <NavLink to="/in-progress">
+            <NavLink to="/tasks">
               <div className={style.dropCell}>
                 <svg className={style.icon} width="24" height="24" viewBox="0 0 24 24" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
