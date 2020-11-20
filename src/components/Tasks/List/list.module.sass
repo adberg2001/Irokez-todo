@@ -1,0 +1,109 @@
+.mainCont
+  height: 100%
+  background: #FFFFFF
+  border: 1px solid #DDDDDD
+  box-sizing: border-box
+  border-radius: 6px
+
+  .title
+    height: 46px
+    background: #F5F5F5
+    border: 1px solid #DDDDDD
+    box-sizing: border-box
+    border-radius: 6px 6px 0 0
+    margin: 0
+    display: flex
+    align-items: center
+    justify-content: center
+    font-weight: bold
+    font-size: 13px
+    line-height: 16px
+    text-align: center
+    color: #616061
+
+  .category
+    padding: 0
+
+    .row
+      list-style: none
+
+      .checkbox
+        display: none
+
+      .checkbox:checked + .row_label
+        background: #F8F8F8
+        border: 1px solid #ECECEC
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+
+      .checkbox:checked + .row_label .row_amount
+        color: #1D1C1D
+
+      .row_label
+        margin: 5px 6px
+        padding: 3px 7px
+        border-radius: 6px
+        box-sizing: border-box
+        display: flex
+        align-items: center
+        border: 1px solid #fff
+
+        .row_icon
+          margin-right: 11px
+
+        .row_title
+          margin: 0 auto 0 0
+          font-weight: 500
+          font-size: 14px
+          line-height: 17px
+          color: #1D1C1D
+
+        .row_amount
+          font-size: 14px
+          line-height: 17px
+          color: #616061
+
+
+  .subCategory
+    padding: 0
+
+    .row
+      list-style: none
+
+      .checkbox
+        display: none
+
+      .checkbox:checked + .row_label
+        background: #F8F8F8
+        border: 1px solid #ECECEC
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+
+      .checkbox:checked + .row_label .row_amount
+        color: #1D1C1D
+
+      .row_label
+        position: relative
+        margin: 5px 6px
+        padding: 3px 7px
+        border-radius: 6px
+        box-sizing: border-box
+        display: flex
+        align-items: center
+        border: 1px solid #fff
+
+        .row_icon
+          width: 20px
+          height: 20px
+          border-radius: 50%
+          margin: 0 13px 0 2px
+
+        .row_title
+          margin: 0 auto 0 0
+          font-weight: 500
+          font-size: 14px
+          line-height: 17px
+          color: #1D1C1D
+
+        .row_amount
+          font-size: 14px
+          line-height: 17px
+          color: #616061
