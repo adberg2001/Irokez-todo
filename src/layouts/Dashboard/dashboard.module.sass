@@ -1,10 +1,11 @@
 .mainCont
-  width: 190px
-
+  margin-top: 13px
   .dropDown
     padding: 0
     display: flex
+    margin: 10px 0 13px 0
     align-items: center
+    cursor: pointer
 
     .dropDownName
       font-style: normal
@@ -13,7 +14,7 @@
       line-height: 14px
       letter-spacing: 0.12em
       text-transform: uppercase
-      margin-right: 10px
+      margin: 0 10px 0 0
 
   .dropCell
     height: 25px
@@ -25,20 +26,17 @@
     margin: 0 -7px
     padding: 7px
 
-    .icon
-      path
-        stroke: #616061
-
     .dropCellName
       font-weight: 400
       font-size: 14px
       line-height: 17px
       display: flex
       align-items: center
-      margin-left: 10px
+      margin: 0 0 0 10px
 
     .dropCellHelp
       margin-left: auto
+
       g
         display: none
 
@@ -46,9 +44,14 @@
     background: #FF4C00
     color: #fff
 
-    .icon
+    .mainIcon
       path
         stroke: #fff
+
+    .icon
+      path
+        fill: #fff
+    //stroke: #fff
 
     .dropCellHelp
       g
