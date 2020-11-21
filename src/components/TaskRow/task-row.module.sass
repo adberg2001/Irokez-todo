@@ -1,4 +1,5 @@
 .taskRow
+  position: relative
   min-height: 75px
   background: #FFFFFF
   border: 1px solid #DDDDDD
@@ -10,33 +11,41 @@
   input
     display: none
 
-  label
-    position: relative
+  .content
+    margin-top: 20px
     display: flex
     align-items: center
-    margin-top: 11px
-
-    span
-      position: absolute
-      margin-right: 10px
-      box-sizing: border-box
+    label
+      position: relative
       display: flex
       align-items: center
 
-    .notChecked
-      height: 17px
-      width: 17px
-      border: 2px solid #DDDDDD
-      border-radius: 50%
+      span
+        box-sizing: border-box
+        display: flex
+        align-items: center
 
-    .checkIcon
-      height: 17px
-      width: 17px
+      .notChecked
+        height: 20px
+        width: 20px
+        border: 2px solid #DDDDDD
+        border-radius: 50%
+
+      .checkIcon
+        height: 20px
+        width: 20px
 
     .taskRow_title
+      width: auto
       font-size: 13px
       text-align: start
       font-weight: 500
       line-height: 19px
-      margin: 0 0 0 25px
+      margin: 0 10px 0 10px
       color: #1D1C1D
+  .pointer
+    height: 30px
+    width: 30px
+    position: absolute
+    right: 5px
+    top: 10px
