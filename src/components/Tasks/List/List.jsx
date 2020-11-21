@@ -6,7 +6,8 @@ import man from "../../../assets/tasks-cotegory-icons/person.svg"
 import people from "../../../assets/dashboard-icons/people.svg"
 import list from "../../../assets/tasks-cotegory-icons/Editor - List.svg"
 
-function List() {
+function List(props) {
+  const {setCategory} = props;
 
   const categories = [
     {id: "sun", title: "Сегодня", img: sun, amount: "3"},
@@ -48,7 +49,7 @@ function List() {
         {
           categories.map(c => (
             <li key={c.id} className={style.row}>
-              <input name="category" className={style.checkbox} type="radio" id={c.id}/>
+              <input  name="category" className={style.checkbox} type="radio" id={c.id}/>
               <label htmlFor={c.id} className={style.row_label}>
                 <img className={style.row_icon} src={c.img} alt={`${c.id}.svg`}/>
                 <p className={style.row_title}>{c.title}</p>
@@ -68,13 +69,14 @@ function List() {
                 setSnackBarId(c.id)
               }} htmlFor={c.id} className={style.row_label}>
                 <div className={style.row_icon} style={{backgroundColor: c.iconColor}}/>
-                <p style={isDeleteId.includes(c.id) ? {color: "#BDBDBD"} : {color: "#1D1C1D"}} className={style.row_title}
+                <p style={isDeleteId.includes(c.id) ? {color: "#BDBDBD"} : {color: "#1D1C1D"}}
+                   className={style.row_title}
                 >{
                   isDeleteId.includes(c.id)
                     ? "Введите название списка"
                     : c.title
                 }</p>
-                <span className={style.row_amount}>{!isDeleteId.includes(c.id)&&c.amount}</span>
+                <span className={style.row_amount}>{!isDeleteId.includes(c.id) && c.amount}</span>
 
                 {open && snackBarId === c.id &&
                 <span className={style.snackBar}>

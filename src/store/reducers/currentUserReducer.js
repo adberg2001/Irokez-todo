@@ -8,7 +8,7 @@ const initialState = {
   },
 };
 
-export default function currentUser(state = initialState, action) {
+export default function currentUserReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_CURRENT_USER:
       return {

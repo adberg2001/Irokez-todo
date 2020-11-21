@@ -1,1 +1,3 @@
 export const FETCH_CURRENT_USER = "FETCH_CURRENT_USER"
+
+export const FETCH_TASKS = "FETCH_TASKS"
