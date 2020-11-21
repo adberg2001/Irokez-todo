@@ -1,0 +1,58 @@
+.autocomplete
+  height: 20px
+  display: flex
+  align-items: center
+  margin: 0 -5px
+
+  .isFavorite, .isOwnTask, .isProjectWork
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+    border-radius: 6px
+    font-weight: bold
+    width: auto
+    font-size: 11px
+    padding: 3px 5px
+    margin: 0 5px
+    color: #616061
+    text-transform: uppercase
+
+  .isOwnTask
+    background: #F5F5F5
+    color: #616061
+
+  .isFavorite
+    background: #ffeee6
+    color: #FF4C00
+
+  .isProjectWork
+    background: #EBF3FE
+    color: #2F80ED
+
+  .plus
+    position: relative
+    display: flex
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+    border-radius: 6px
+    align-items: center
+    justify-content: center
+    background: #F5F5F5
+    padding: 2px 4px
+    margin: 0 5px
+
+    .modalWin
+      min-width: 80px
+      text-align: start
+      position: absolute
+      top: 24px
+      background: #ffffff
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15)
+      border-radius: 6px
+      font-size: 10px
+      display: flex
+      align-items: center
+      color: #e00000
+      justify-content: center
+      padding: 3px 5px
+  .plus:hover
+    display: flex
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25)
+    background: #e5e4e4

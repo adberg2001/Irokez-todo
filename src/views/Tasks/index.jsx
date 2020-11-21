@@ -1,13 +1,10 @@
 import React, {useState} from "react";
 import style from "./style.module.sass"
-import MainWrapper from "../../components/MainWrapper/MainWrapper"
-import List from "../../components/Tasks/List/List";
-import TasksPart from "../../components/Tasks/Tasks/Tasks";
+import MainWrapper from "../../layouts/MainWrapper/MainWrapper"
+import List from "../../layouts/Tasks/List/List";
+import TasksPart from "../../layouts/Tasks/Tasks/Tasks";
 
 function Tasks(){
-
-
-  const [category, setCategory] = useState('')
 
   return(
     <MainWrapper>

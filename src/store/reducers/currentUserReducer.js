@@ -14,7 +14,7 @@ export default function currentUserReducer(state = initialState, action) {
       return {
         ...state,
         currentUser: {
-          [action.key]: action.data,
+          [action.dataType]: action.data,
         },
       };
     default:

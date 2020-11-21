@@ -1,42 +1,25 @@
-import axios from "../../axios/configuratedAxios";
+import fetchRequest from "../../fetch/configuratedFetch"
 import {
-  FETCH_COURSES_START,
-  FETCH_COURSES_SUCCESS,
-  FETCH_COURSES_ERROR,
-  FETCH_COURSES_DETAIL,
-  FETCH_COURSES_DETAIL_ERROR
+  FETCH_CURRENT_USER,
 } from "./actionTypes";
 
-export function fetchCourses() {
+export function fetchCurrentUser(data) {
   return async(dispatch) => {
-    dispatch(fetchCoursesStart());
-
     try {
-      const response = await axios.get('courses/');
-      dispatch(fetchCoursesSuccess(response.data));
-      console.log(response.data)
+      const response = await fetchRequest("POST", 'user/login/', data);
+      response && response.token &&
+      localStorage.setItem('token', response.token)
+      dispatch(fetchCurrentUserAction(response, "data"));
     } catch (error) {
-      dispatch(fetchCoursesError(error));
+      dispatch(fetchCurrentUserAction(error, "error"));
     }
   };
 }
 
-export function fetchCoursesStart() {
+export function fetchCurrentUserAction(data, dataType) {
   return {
-    type: FETCH_COURSES_START,
-  };
-}
-
-export function fetchCoursesSuccess(courses) {
-  return {
-    type: FETCH_COURSES_SUCCESS,
-    courses: courses
-  }
-}
-
-export function fetchCoursesError(error) {
-  return {
-    type: FETCH_COURSES_ERROR,
-    error: error
+    type: FETCH_CURRENT_USER,
+    data: data,
+    dataType: dataType,
   }
 }

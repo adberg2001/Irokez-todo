@@ -1,5 +1,5 @@
 import React from "react";
-import MainWrapper from "../../components/MainWrapper/MainWrapper";
+import MainWrapper from "../../layouts/MainWrapper/MainWrapper";
 import style from "./home.module.sass"
 
 function Home(){
