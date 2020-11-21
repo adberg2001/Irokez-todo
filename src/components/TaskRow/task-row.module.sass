@@ -7,10 +7,36 @@
   margin-bottom: 10px
   padding: 10px
 
-  .taskRow_title
-    font-size: 13px
-    text-align: start
-    font-weight: 500
-    line-height: 19px
-    margin: 10px 0 0
-    color: #1D1C1D
+  input
+    display: none
+
+  label
+    position: relative
+    display: flex
+    align-items: center
+    margin-top: 11px
+
+    span
+      position: absolute
+      margin-right: 10px
+      box-sizing: border-box
+      display: flex
+      align-items: center
+
+    .notChecked
+      height: 17px
+      width: 17px
+      border: 2px solid #DDDDDD
+      border-radius: 50%
+
+    .checkIcon
+      height: 17px
+      width: 17px
+
+    .taskRow_title
+      font-size: 13px
+      text-align: start
+      font-weight: 500
+      line-height: 19px
+      margin: 0 0 0 25px
+      color: #1D1C1D

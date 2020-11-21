@@ -23,9 +23,7 @@ function Autocomplete(props) {
   function handleToggleSection (title){
     setOpen(false)
     setIsLoading(true)
-    const obj = props.task
-    obj[title] = !obj[title]
-    fetchRequest("PUT", `todo/${id}/`,obj).then(()=> {
+    fetchRequest("PATCH", `todo/${id}/`, {[title]: !props.task[title]}).then(()=> {
       dispatch(fetchTasks())
       setIsLoading(false)
     })
