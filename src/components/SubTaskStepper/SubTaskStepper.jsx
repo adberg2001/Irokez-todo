@@ -1,7 +1,6 @@
 import React from 'react'
 import style from './sub-task-stapper.module.sass'
 import {motion} from 'framer-motion'
-import {fetchTasks} from "../../store/actions"
 import TextField from '../../molecules/TextField/TextField'
 
 function SubTaskStepper(props) {
@@ -22,7 +21,7 @@ function SubTaskStepper(props) {
     >
       <div className={style.shadow}/>
       <div className={style.subTask_row}>
-        <div className={style.stepper_Figure}>
+        <div className={style.stepper_figure}>
           <div className={style.subTask_transparentStick}/>
           <div className={style.subTask_Circle}/>
           <div className={style.subTask_Stick}/>
@@ -31,12 +30,12 @@ function SubTaskStepper(props) {
       </div>
 
       <div className={style.subTask_row}>
-        <div className={style.stepper_Figure}>
+        <div className={style.stepper_figure}>
           <div className={style.subTask_Stick}/>
           <div className={style.subTask_Circle}/>
           <div className={style.subTask_transparentStick}/>
         </div>
-        <p className={style.subTask_title}>Провести презентацию</p>
+        <p className={style.subTask_title}>Разработать план презентации</p>
       </div>
       {/*{*/}
       {/*  task.sub_tasks.length ? task.sub_tasks.map( (s, i) => (*/}
@@ -49,7 +48,6 @@ function SubTaskStepper(props) {
         method="PATCH"
         url={`todo/${task.id}/`}
         name="sub_tasks"
-        fetchData={fetchTasks}
         placeholder="Добавить подзадачу"
       />
     </motion.div>

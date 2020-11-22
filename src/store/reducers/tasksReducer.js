@@ -1,10 +1,14 @@
-import { FETCH_TASKS } from "../actions/actionTypes";
+import { FETCH_TASKS, FETCH_TASKS_DETAIL } from "../actions/actionTypes";
 
 const initialState = {
   tasks: {
     data: null,
     error: null,
   },
+  taskDetail: {
+    data: null,
+    error: null
+  }
 };
 
 export default function tasksReducer(state = initialState, action) {
@@ -13,6 +17,13 @@ export default function tasksReducer(state = initialState, action) {
       return {
         ...state,
         tasks: {
+          [action.dataType]: action.data,
+        },
+      };
+    case FETCH_TASKS_DETAIL:
+      return {
+        ...state,
+        taskDetail: {
           [action.dataType]: action.data,
         },
       };

@@ -3,13 +3,13 @@ import {useSelector, useDispatch} from "react-redux"
 import fetchRequest from "../../fetch/configuratedFetch"
 import style from "./autocomplete.module.sass"
 import plus from "../../assets/tasks_panel_icons/plus.svg"
-import {fetchTasks} from "../../store/actions"
 import Loader from '../Loader/Loader'
+import {fetchTasksDetail, fetchTasks} from "../../store/actions";
 
 
-function Autocomplete(props) {
+function TasksAutocomplete({task}) {
   const dispatch = useDispatch()
-  const {id, is_favorite, employee, employee_appointed} = props.task;
+  const {id, is_favorite, employee, employee_appointed} = task;
   const [open, setOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const userId = useSelector(state => state.currentUser.currentUser.data && state.currentUser.currentUser.data.user.id)
@@ -23,8 +23,9 @@ function Autocomplete(props) {
   function handleToggleSection (title){
     setOpen(false)
     setIsLoading(true)
-    fetchRequest("PATCH", `todo/${id}/`, {[title]: !props.task[title]}).then(()=> {
+    fetchRequest("PATCH", `todo/${id}/`, {[title]: !task[title]}).then(()=> {
       dispatch(fetchTasks())
+      dispatch(fetchTasksDetail(id))
       setIsLoading(false)
     })
   }
@@ -54,4 +55,4 @@ function Autocomplete(props) {
   )
 }
 
-export default Autocomplete;
+export default TasksAutocomplete;

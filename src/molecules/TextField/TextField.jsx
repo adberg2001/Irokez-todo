@@ -3,8 +3,10 @@ import style from './text-field.module.sass'
 import fetchReq from "../../fetch/configuratedFetch"
 import {useDispatch} from "react-redux"
 import plus from "../../assets/tasks_panel_icons/plus-circle.svg"
+import {fetchTasks} from "../../store/actions"
+import {isLoadingActions} from "../../store/actions";
 
-function TextField({method, url, name, fetchData, placeholder}) {
+function TextField({method, url, name, placeholder}) {
   const [value, setValue] = useState("");
 
   const [isOutsideClick, setIsOutsideClick] = useState(false);
@@ -18,9 +20,11 @@ function TextField({method, url, name, fetchData, placeholder}) {
 
   useEffect(() => {
     if (isOutsideClick && value !== "") {
+      dispatch(isLoadingActions(true))
       fetchReq(method, url, {[name]: value})
-      dispatch(fetchData())
+      dispatch(fetchTasks())
       setValue("")
+      setTimeout(()=>dispatch(isLoadingActions(false)), 1000)
     }
     setIsOutsideClick(false)
   }, [isOutsideClick]);

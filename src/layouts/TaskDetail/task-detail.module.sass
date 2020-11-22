@@ -1,0 +1,59 @@
+.mainCont
+  width: 52vw
+  //height: 72.314049587%
+  background: #fff
+  border: 1px solid #DDDDDD
+  box-sizing: border-box
+  border-radius: 6px
+
+  .header
+    height: 40px
+    background: #F5F5F5
+    border: 1px solid #DDDDDD
+    box-sizing: border-box
+    border-radius: 6px 6px 0 0
+    color: #1D1C1D
+    display: flex
+    padding: 4px 0
+    align-items: center
+
+    .header_back
+      font-weight: bold
+      font-size: 12px
+      line-height: 16px
+      letter-spacing: 0.12em
+      text-transform: uppercase
+      background: transparent
+      display: flex
+      align-items: center
+      border: none
+      margin: 0 13px 0 9px
+      padding: 0
+      img
+        transition: .05s ease-in-out
+    .header_back:hover
+      img
+        transform: translate(-2px, 0) scale(1.02)
+
+    .header_title
+      font-weight: bold
+      font-size: 13px
+      line-height: 16px
+      letter-spacing: 0.12em
+      text-transform: uppercase
+      margin-left: 13px
+
+    .header_close
+      margin: 0 9px 0 auto
+    .header_close:hover
+      transform: scale(1.1)
+      background: #eaeaea
+  .main
+    display: grid
+    grid-template: 1fr / 70% 30%
+
+
+@media (max-width: 1350px)
+  .mainCont
+    width: 65vw
+    //height: 82.314049587%
