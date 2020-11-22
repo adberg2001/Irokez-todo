@@ -3,7 +3,7 @@ import style from "./set-task-amployee.module.sass"
 import amployeeAva from "../../assets/tasks-modal-window-icons/appointer.svg"
 import configuratedFetch from "../../fetch/configuratedFetch";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchTasksDetail, isLoadingActions} from "../../store/actions";
+import {fetchTasks, fetchTasksDetail, isLoadingActions} from "../../store/actions";
 
 function SetTaskAmployee({amployeers}){
 
@@ -29,7 +29,8 @@ function SetTaskAmployee({amployeers}){
   function setAmployee(id){
     dispatch(isLoadingActions(true))
     configuratedFetch("PATCH", `todo/${task.id}/`, {"employee_appointed": id})
-      .then((r) => {
+      .then(() => {
+        dispatch(fetchTasks())
         dispatch(fetchTasksDetail(task.id))
         dispatch(isLoadingActions(false))
       })

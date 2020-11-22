@@ -2,7 +2,7 @@
   display: flex
   align-items: center
   justify-content: space-between
-  padding: 0 15.0675%
+  padding: 0 18.5%
   height: 56px
   background: #FFFFFF
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
@@ -18,6 +18,7 @@
 
     .notification
       height: 36px
+      width: 172px
       display: flex
       align-items: center
       margin: 0 19px
@@ -34,11 +35,12 @@
         margin-right: 8px
 
   .personalArea
+    text-transform: none
     span
       text-align: end
 
       .name
-        font-size: 11px
+        font-size: 12px
         line-height: 15px
         margin: 0
         font-weight: 700
@@ -52,3 +54,7 @@
 
     .avatar
       margin: 0 20px
+
+@media(max-width: 1600px)
+   .header
+     padding: 0 17.0675%

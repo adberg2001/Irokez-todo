@@ -6,8 +6,12 @@ import notificationIcon from "../../assets/bell.svg"
 import avatar from "../../assets/avatar.svg"
 import dropDownIcon from "../../assets/chevron-up.svg"
 import {Divider, Button} from '@material-ui/core';
+import {useSelector} from "react-redux";
 
 function Header() {
+
+  const currentUser = useSelector(state => state.currentUser.currentUser.data && state.currentUser.currentUser.data.user)
+
   return (
     <header className={style.header}>
       <div className={style.logo} >
@@ -23,9 +27,9 @@ function Header() {
         </button>
         <Divider orientation="vertical"/>
       </div>
-      <Button className={style.personalArea}>
+      <Button  className={style.personalArea}>
         <span>
-          <p className={style.name}>Александров Александр</p>
+          <p className={style.name}>{currentUser ? `${currentUser.first_name} ${currentUser.last_name}` : ""}</p>
           <p className={style.role}>HR-Менеджер</p>
         </span>
         <img src={avatar} className={style.avatar} alt=""/>

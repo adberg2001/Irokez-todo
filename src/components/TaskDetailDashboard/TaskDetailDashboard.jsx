@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import authorAva from "../../assets/tasks-modal-window-icons/autor-ava.svg"
 import SetTaskAmployee from "../../molecules/SetTaskAmployee/SetTaskAmployee";
 import configuratedFetch from "../../fetch/configuratedFetch";
+import SetTaskDeadline from "../../molecules/SetTaskDeadline/SetTaskDeadline";
 
 function TaskDetailDashboard(){
   const [amployeers, setAmployeers] = useState(null)
@@ -35,6 +36,7 @@ function TaskDetailDashboard(){
           <SetTaskAmployee amployeers={amployeers}/>
         </div>
       </div>
+      <SetTaskDeadline/>
     </div>
   )
 }

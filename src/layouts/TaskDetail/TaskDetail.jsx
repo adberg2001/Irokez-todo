@@ -47,7 +47,7 @@ function TaskDetail({isWindowOpen, setIsWindowOpen, task}) {
           <img onClick={()=> setIsWindowOpen(false)} src={close} className={style.header_close} alt="close.svg"/>
         </div>
         <div className={style.main}>
-          <TaskDetailMain/>
+          <TaskDetailMain setIsWindowOpen={setIsWindowOpen}/>
           <TaskDetailDashboard/>
         </div>
       </div>
