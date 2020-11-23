@@ -1,12 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react'
-import style from './text-field.module.sass'
+import style from './title-text-field.module.sass'
 import fetchReq from "../../fetch/configuratedFetch"
 import {useDispatch} from "react-redux"
 import plus from "../../assets/tasks_panel_icons/plus-circle.svg"
 import {fetchTasks} from "../../store/actions"
 import {isLoadingActions} from "../../store/actions";
 
-function TextField({method, url, name, placeholder}) {
+function TitleTextField({method, url, name, placeholder, isSubTask, subId}) {
   const [value, setValue] = useState("");
 
   const [isOutsideClick, setIsOutsideClick] = useState(false);
@@ -19,12 +19,18 @@ function TextField({method, url, name, placeholder}) {
   }, [])
 
   useEffect(() => {
+    const data = isSubTask ? {
+      [name]: value,
+      task: subId,
+      is_primary: false
+    } : null
     if (isOutsideClick && value !== "") {
       dispatch(isLoadingActions(true))
-      fetchReq(method, url, {[name]: value})
+      isSubTask ? fetchReq(method, url, data)
+        : fetchReq(method, url, {[name]: value, is_primary: true})
       dispatch(fetchTasks())
       setValue("")
-      setTimeout(()=>dispatch(isLoadingActions(false)), 1000)
+      setTimeout(() => dispatch(isLoadingActions(false)), 1100)
     }
     setIsOutsideClick(false)
   }, [isOutsideClick]);
@@ -46,4 +52,4 @@ function TextField({method, url, name, placeholder}) {
   )
 }
 
-export default TextField
+export default TitleTextField

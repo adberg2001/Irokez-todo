@@ -1,11 +1,10 @@
 import React from 'react'
 import style from './sub-task-stapper.module.sass'
 import {motion} from 'framer-motion'
-import TextField from '../../molecules/TextField/TextField'
+import TitleTextField from '../../molecules/TitleTextField/TitleTextField'
+import SubTaskRow from "../../molecules/SubTaskRow/SubTaskRow";
 
-function SubTaskStepper(props) {
-  const {task} = props;
-  console.log(task)
+function SubTaskStepper({task}) {
   return (
     <motion.div
       key="content"
@@ -20,35 +19,14 @@ function SubTaskStepper(props) {
       className={style.mainCont}
     >
       <div className={style.shadow}/>
-      <div className={style.subTask_row}>
-        <div className={style.stepper_figure}>
-          <div className={style.subTask_transparentStick}/>
-          <div className={style.subTask_Circle}/>
-          <div className={style.subTask_Stick}/>
-        </div>
-        <p className={style.subTask_title}>Провести презентацию</p>
-      </div>
-
-      <div className={style.subTask_row}>
-        <div className={style.stepper_figure}>
-          <div className={style.subTask_Stick}/>
-          <div className={style.subTask_Circle}/>
-          <div className={style.subTask_transparentStick}/>
-        </div>
-        <p className={style.subTask_title}>Разработать план презентации</p>
-      </div>
-      {/*{*/}
-      {/*  task.sub_tasks.length ? task.sub_tasks.map( (s, i) => (*/}
-      {/*    <span key={i}>*/}
-      {/*      {s.title}*/}
-      {/*    </span>*/}
-      {/*  )) : ''*/}
-      {/*}*/}
-      <TextField
-        method="PATCH"
-        url={`todo/${task.id}/`}
-        name="sub_tasks"
+      <SubTaskRow task={task} subTasks={task.sub_tasks}/>
+      <TitleTextField
+        method="POST"
+        url={`todo/`}
+        name="title"
         placeholder="Добавить подзадачу"
+        isSubTask={true}
+        subId={task.id}
       />
     </motion.div>
   )

@@ -59,9 +59,9 @@ function TaskStatusCheckbox({task, setIsWindowOpen, setModalTask}) {
     if (node && node.current && node.current.contains(e.target)) {
       return
     }
+    setTitleValue("")
     setOpenTitleInput(false)
   }
-
 
   return (
     <div className={style.mainCont}>
