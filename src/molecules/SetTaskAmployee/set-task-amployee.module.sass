@@ -23,37 +23,45 @@
     padding: 5px
     margin: -5px -5px 5px -5px
     outline: none
+
     img
       margin-right: 7px
+
   .selectedUser:hover
     background: #efefef
+
   .modalWin
-    max-height: 200px
-    overflow: auto
+    position: absolute
+    width:
+    height: 300px
     display: flex
     flex-direction: column
     justify-content: center
     align-items: flex-start
     margin-top: 5px
-    padding: 10px 5px
     background: #FFFFFF
     border: 1px solid #DDDDDD
     box-sizing: border-box
     border-radius: 8px
 
-    .amplyeeRow
-      display: flex
-      justify-content: start
-      align-items: center
-      text-align: start
-      padding: 5px
-      font-size: 14px
-      line-height: 17px
-      color: #1D1C1D
-      box-sizing: border-box
-      border-radius: 8px
-      img
-        margin-right: 5px
-    .amplyeeRow:hover
-      background: #DDDDDD
-      color: #1D1C1D
+    div
+      overflow-y: auto
+
+      .amplyeeRow
+        display: flex
+        justify-content: start
+        align-items: center
+        text-align: start
+        padding: 5px
+        font-size: 14px
+        line-height: 17px
+        color: #1D1C1D
+        box-sizing: border-box
+        border-radius: 8px
+
+        img
+          margin-right: 5px
+
+      .amplyeeRow:hover
+        background: #DDDDDD
+        color: #1D1C1D

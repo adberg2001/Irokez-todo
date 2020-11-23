@@ -91,36 +91,7 @@ function TaskDetailMainComment() {
           ))
         }
       </ul>
-      <div className={style.textEditor}>
-        <label className={style.label} htmlFor="field">
-          <input value={comment} onChange={e => setComment(e.target.value)} placeholder="Комментарий" id="field"
-                 type="text"/>
-        </label>
-        <Divider orientation="horizontal"/>
-        <div className={style.actions}>
-          <span>
-            <img src={bold} alt="editor-bold.svg"/>
-            <img src={italic} alt="editor-italic.svg"/>
-            <img src={stripe} alt="editor-stripe.svg"/>
-          </span>
-          <Divider style={{margin: "0 3px"}} flexItem={true} orientation="vertical"/>
-          <span>
-            <img src={link} alt="editor-link.svg"/>
-            <img src={listDigit} alt="editor-list-digit.svg"/>
-            <img src={list} alt="editor-list.svg"/>
-          </span>
-          <Divider style={{margin: "0 3px"}} flexItem={true} orientation="vertical"/>
-          <Divider style={{marginLeft: "auto"}} flexItem={true} orientation="vertical"/>
-          <span>
-            <img src={at} alt="editor-at.svg"/>
-            <img src={smile} alt="editor-smile.svg"/>
-          </span>
-          <Divider style={{margin: "0 3px"}} flexItem={true} orientation="vertical"/>
-          <button onClick={() => fetchComment()} className={style.commentBtn}>
-            Комментировать
-          </button>
-        </div>
-      </div>
+
     </div>
   )
 }

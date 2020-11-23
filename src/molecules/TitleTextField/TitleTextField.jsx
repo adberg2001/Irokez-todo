@@ -1,16 +1,15 @@
 import React, {useState, useRef, useEffect} from 'react'
 import style from './title-text-field.module.sass'
 import fetchReq from "../../fetch/configuratedFetch"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import plus from "../../assets/tasks_panel_icons/plus-circle.svg"
-import {fetchTasks} from "../../store/actions"
+import {fetchTasks, fetchTasksDetail} from "../../store/actions"
 import {isLoadingActions} from "../../store/actions";
 
-function TitleTextField({method, url, name, placeholder, isSubTask, subId}) {
+function TitleTextField({method, url, name, placeholder, isSubTask, subId, task}) {
   const [value, setValue] = useState("");
 
   const [isOutsideClick, setIsOutsideClick] = useState(false);
-
   const dispatch = useDispatch();
   const node = useRef();
   useEffect(() => {
@@ -29,6 +28,7 @@ function TitleTextField({method, url, name, placeholder, isSubTask, subId}) {
       isSubTask ? fetchReq(method, url, data)
         : fetchReq(method, url, {[name]: value, is_primary: true})
       dispatch(fetchTasks())
+      task && dispatch(fetchTasksDetail(task.id))
       setValue("")
       setTimeout(() => dispatch(isLoadingActions(false)), 1100)
     }

@@ -6,8 +6,7 @@ import {motion} from 'framer-motion'
 import SubTaskStepper from '../SubTaskStepper/SubTaskStepper'
 import TaskStatusCheckbox from "../../molecules/TaskStatusCheckbox/TaskStatusCheckbox";
 
-function TaskRows(props) {
-  const {tasks, setIsWindowOpen, setModalTask} = props;
+function TaskRows({tasks, setIsWindowOpen, setModalTask}) {
 
   const [openStepper, setOpenStepper] = useState({});
 
@@ -39,7 +38,23 @@ function TaskRows(props) {
                 <motion.img className={style.pointer} animate={{rotate: openStepper[task.id] ? 0 : -180}}
                             onClick={() => handleToggleStepper(task)} src={pointer} alt=""/>
               </div>
-              {openStepper[task.id] && <SubTaskStepper task={task} openStepper={openStepper[task.id]}/>}
+              {openStepper[task.id] &&
+              <motion.div
+                key="content"
+                initial="collapsed"
+                animate="open"
+                exit="collapsed"
+                variants={{
+                  open: {opacity: 1, height: "auto"},
+                  collapsed: {opacity: 0, height: 0}
+                }}
+                transition={{duration: 1, ease: [0.04, 0.62, 0.23, 0.98]}}
+                className={style.subTaskStepper}
+              >
+                <div className={style.shadow}/>
+                <SubTaskStepper task={task} openStepper={openStepper[task.id]}/>
+              </motion.div>
+              }
             </React.Fragment>
           )
         })

@@ -38,7 +38,6 @@ function TaskStatusCheckbox({task, setIsWindowOpen, setModalTask}) {
   const [openTitleInput, setOpenTitleInput] = useState(false);
 
   function handleEditTitle(){
-    console.log("click")
     dispatch(isLoadingActions(true))
     configuratedFetch("PATCH", `todo/${task.id}/`, {title: tittleValue})
       .then(()=>{

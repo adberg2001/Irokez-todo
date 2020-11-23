@@ -16,12 +16,6 @@ function SubTaskRow({task, subTasks}) {
     return r === 0;
   }
 
-  const taskk = {
-    sub_tusk: [
-      {id: 15, status: false},
-    ]
-  }
-
   function handleToggleStatus(id, status) {
     dispatch(isLoadingActions(true))
     const data = {
@@ -33,8 +27,8 @@ function SubTaskRow({task, subTasks}) {
 
     fetchRequest('PATCH', `todo/${id}/`, data)
       .then(() => {
-        dispatch(fetchTasksDetail(id))
-        dispatch(fetchTasks())
+        // dispatch(fetchTasksDetail(task.id))
+        // dispatch(fetchTasks())
 
         dispatch(isLoadingActions(false))
       })

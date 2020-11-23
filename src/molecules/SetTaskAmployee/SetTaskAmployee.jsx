@@ -30,12 +30,13 @@ function SetTaskAmployee({amployeers}){
     dispatch(isLoadingActions(true))
     configuratedFetch("PATCH", `todo/${task.id}/`, {"employee_appointed": id})
       .then(() => {
+        setOpen(false)
         dispatch(fetchTasks())
         dispatch(fetchTasksDetail(task.id))
         dispatch(isLoadingActions(false))
       })
   }
-  console.log(task)
+
   return (
     <div ref={node} className={style.mainCont}>
       { task && task.employee_appointed ?
@@ -46,14 +47,16 @@ function SetTaskAmployee({amployeers}){
       }
       {open&&
       <div className={style.modalWin}>
-        {
-          amployeers.map(a => (
-            <btn onClick={()=>setAmployee(a.id)} key={a.id} className={style.amplyeeRow}>
-              <img src={amployeeAva} alt="amployeeAva"/>
-              {a.first_name} {a.last_name}
-            </btn>
-          ))
-        }
+        <div>
+          {
+            amployeers.map(a => (
+              <btn onClick={()=>setAmployee(a.id)} key={a.id} className={style.amplyeeRow}>
+                <img src={amployeeAva} alt="amployeeAva"/>
+                {a.first_name} {a.last_name}
+              </btn>
+            ))
+          }
+        </div>
       </div>
       }
     </div>
